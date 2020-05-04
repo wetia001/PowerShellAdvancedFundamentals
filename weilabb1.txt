@@ -1,0 +1,42 @@
+<#
+Hann inte göra allt, har försökt lite, har bredskap idag. /Wei
+#>
+$number = '1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'
+$number | Select-Object -First 10
+
+$number | foreach {
+if($_ % 2 -eq 0 ) {
+"$_ is even"
+}
+else {"$_ is odd"} 
+}
+
+function New-FileInDirectory {
+param (
+[Parameter(Mandatory=$true)][string]$path
+) 
+if ($path -match '[A-z1-9]{5,}'){
+if (test-path $path) {
+Write-Output "Fil finns redan"
+}
+else {
+New-Item -Path $path }
+}
+else { Write-Output 'Wrong entered'}
+}
+
+function New-FileInDirectory2 {
+param (
+[Parameter(Mandatory=$true)]
+[ValidatePattern('[A-z1-9]{5,}')]
+[string]$path
+) 
+If(Test-Path $_){
+New-Item -Path $path
+}
+}
+}
+
+Function Add-FiveToNumber {
+#[Parameter(Mandatory=$true)]
+}
